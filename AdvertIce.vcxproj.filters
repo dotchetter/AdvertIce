@@ -18,5 +18,8 @@
     <ClCompile Include="AdvertIce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
