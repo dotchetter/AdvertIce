@@ -76,7 +76,7 @@ int main()
 	ad.SetId();
 	cout << ad.GetId() <<endl;
 
-	Ad ad2("pfdgkfz\n", "fgolzfkm Ab");
+	Ad ad2("pfdgkfz\n", "fgolzfk Ab");
 	cout << ad.GetName() << ad.GetText() << endl;
 	ad.SetId();
 	cout << ad.GetId();
