@@ -16,7 +16,8 @@ Campaigns: Vector
 
 using namespace std;
 
-class Customer {
+class Customer 
+{
 	string name;
 	int id;
 	vector<string> campaigns;
@@ -28,17 +29,19 @@ public:
 		this->id = id;
 	}
 
-	string GetName() {
+	string GetName() 
+	{
 		return name;
 	}
 
-	int GetId() {
+	int GetId() 
+	{
 		return id;
 	}
 };
 
-int main() {
+int main() 
+{
 	Customer t("test", 123);
 	cout << t.GetName();
-
 }
