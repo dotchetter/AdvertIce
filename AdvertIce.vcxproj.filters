@@ -15,7 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="customer.h">
+    <ClInclude Include="Ad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="campaign.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
