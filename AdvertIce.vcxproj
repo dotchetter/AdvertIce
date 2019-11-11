@@ -151,10 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ad.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Ad.h" />
+    <ClInclude Include="AdType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
