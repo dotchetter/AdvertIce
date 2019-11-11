@@ -52,7 +52,7 @@ public:
 
 	void SetType(AdType type)
 	{
-		this->adType = type
+		this->adType = type;
 	}
 
 	string GetText()
