@@ -34,10 +34,30 @@ public:
 		return name;
 	}
 
-	int GetId() 
+	string SetName(string name) 
+	{
+		this->name = name;
+	}
+
+	int GetId()
 	{
 		return id;
 	}
+
+	int SetId(int id) 
+	{
+		this->id = id;
+	}
+
+	bool hasActiveCampaigns()
+	{
+		for (campaign i : campaigns) // Returnera om någon av kampanjerna är i nuvarande tidsscope.
+		{
+			if (i.IsActive()) {
+				return true;
+			}
+		}
+	} return false;
 };
 
 int main() 
