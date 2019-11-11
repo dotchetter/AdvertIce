@@ -15,8 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AdType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="AdType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
