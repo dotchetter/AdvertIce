@@ -68,17 +68,17 @@ public:
 int main()
 {
 
-	Ad ad("Anton Norell\n", "Norell och Nilsson bilskador Abn");
-	cout << ad.GetName() << ad.GetText() << endl;
-	ad.SetId();
-	cout << ad.GetId() <<endl;
+	//Ad ad("Anton Norell\n", "Norell och Nilsson bilskador Abn");
+	//cout << ad.GetName() << ad.GetText() << endl;
+	//ad.SetId();
+	//cout << ad.GetId() <<endl;
 
-	Ad ad2("pfdgkfz\n", "fgolzfk Ab");
-	cout << ad.GetName() << ad.GetText() << endl;
-	ad.SetId();
-	cout << ad.GetId();
+	//Ad ad2("pfdgkfz\n", "fgolzfk Ab");
+	//cout << ad.GetName() << ad.GetText() << endl;
+	//ad.SetId();
+	//cout << ad.GetId();
 
-	getchar();
+	//getchar();
 }
 		
 		
