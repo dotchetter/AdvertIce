@@ -2,6 +2,7 @@
 #include <vector>
 #include <cstdio>
 #include <string>
+#include "campaign.h"
 
 using namespace std;
 
@@ -23,8 +24,24 @@ public:
 		return name;
 	}
 
+	string SetName(string name)
+	{
+		this->name = name;
+	}
+
 	int GetId()
 	{
 		return id;
+	}
+
+	int SetId(int id)
+	{
+		this->id = id;
+	}
+
+	bool AddCampaign(Campaign campaignObject)
+	{
+		campaigns.push_back(campaignObject);
+		return true;
 	}
 };

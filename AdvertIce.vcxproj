@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Ad.h" />
     <ClInclude Include="AdType.h" />
+    <ClInclude Include="customer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="campaign.h" />
