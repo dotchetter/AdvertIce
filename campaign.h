@@ -16,7 +16,7 @@ class Campaign
 	time_t fromDateTime;
 	time_t toDateTime;
 	float campaignCost;
-	vector<string> ads; // Byt till Ad
+	vector<Ad> ads;
 
 public:
 	Campaign(time_t fromDateTime, time_t toDateTime, int id, string name, float campaignCost)
@@ -78,11 +78,11 @@ public:
 		this->campaignCost = campaignCost;
 	}
 
-	bool CommitAdvertisement(Ad ad) // Byt till Ad
+	bool CommitAdvertisement(Ad ad)
 	{
 		for (int i = 0; i < ads.size(); i++)
 		{
-			if (ads[i].id == ad.id)
+			if (ads[i].GetId() == id)
 			{
 				return false;
 			}
