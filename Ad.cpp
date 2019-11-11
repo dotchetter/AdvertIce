@@ -2,9 +2,6 @@
 #include <vector>
 #include <iostream>
 #include <exception>
-#include <time.h>
-#include <stdlib.h>
-#include <algorithm>
 
 using namespace std;
 
