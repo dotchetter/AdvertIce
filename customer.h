@@ -59,11 +59,6 @@ public:
 
 	vector<Campaign> GetAllCampaigns()
 	{
-		vector<Campaign> AllCampaigns;
-		for (Campaign i : campaigns)
-		{
-			AllCampaigns.push_back(i);
-		}
-		return AllCampaigns;
+		return campaigns;
 	}
 };
