@@ -19,7 +19,7 @@ private:
 
 public:
 
-	Ad(string name, string text)
+	Ad(string name, string text, AdType type, int id)
 	{
 		this->name = name;
 		this->adText = text;
