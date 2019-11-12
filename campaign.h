@@ -33,7 +33,7 @@ public:
 		return fromDateTime;
 	}
 
-	time_t SetFromDateTime(time_t fromDateTime)
+	void SetFromDateTime(time_t fromDateTime)
 	{
 		this->fromDateTime = fromDateTime;
 	}
@@ -43,7 +43,7 @@ public:
 		return toDateTime;
 	}
 
-	time_t SetToDateTime(time_t toDateTime)
+	void SetToDateTime(time_t toDateTime)
 	{
 		this->toDateTime = toDateTime;
 	}
@@ -53,7 +53,7 @@ public:
 		return id;
 	}
 
-	int SetId(int id)
+	void SetId(int id)
 	{
 		this->id = id;
 	}
@@ -63,7 +63,7 @@ public:
 		return name;
 	}
 
-	string SetName(string name)
+	void SetName(string name)
 	{
 		this->name = name;
 	}
@@ -73,7 +73,7 @@ public:
 		return campaignCost;
 	}
 
-	float SetCampaignCost(float campaignCost)
+	void SetCampaignCost(float campaignCost)
 	{
 		this->campaignCost = campaignCost;
 	}
