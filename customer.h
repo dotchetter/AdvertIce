@@ -47,7 +47,14 @@ public:
 
 	bool hasActiveCampaigns()
 	{
-		// Använd Campaign instansernas from och to för att utvärdera om någon av dem är giltig
+		for (Campaign i : campaigns)
+		{
+			if (i.IsActive())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	vector<Campaign> GetAllCampaigns()
