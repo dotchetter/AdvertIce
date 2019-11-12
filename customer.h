@@ -24,7 +24,7 @@ public:
 		return name;
 	}
 
-	string SetName(string name)
+	void SetName(string name)
 	{
 		this->name = name;
 	}
@@ -34,7 +34,7 @@ public:
 		return id;
 	}
 
-	int SetId(int id)
+	void SetId(int id)
 	{
 		this->id = id;
 	}
