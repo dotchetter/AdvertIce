@@ -19,7 +19,7 @@ private:
 
 public:
 
-	Ad(string name, string text)
+	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
 	{
 		this->name = name;
 		this->adText = text;
