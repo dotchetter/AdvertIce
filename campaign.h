@@ -83,7 +83,7 @@ public:
 	{
 		time_t now = time(NULL);
 
-		if (fromDateTime >= now && toDateTime >= now)
+		if (fromDateTime <= now && toDateTime >= now)
 		{
 			return true;
 		}
