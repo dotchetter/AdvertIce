@@ -94,7 +94,7 @@ public:
 	{
 		for (int i = 0; i < ads.size(); i++)
 		{
-			if (ads[i].id == id)
+			if (ads[i].GetId() == id)
 			{
 				ads.erase(ads.begin() + i);
 				return false;
