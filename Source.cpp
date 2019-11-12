@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main()
+int mainS()
 {
 	Ad reklam("Namnet", "Texten");
 
@@ -30,4 +30,5 @@ int main()
 	for (Ad i : listan) {
 		cout << i.GetName() << endl;
 	}
+	return 0;
 }
