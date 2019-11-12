@@ -32,7 +32,7 @@ public:
 
 	void SetName(string name)
 	{
-		this->name = name; // Inkludera felhantering och datavalidering
+		this->name = name;
 	}
 
 	int GetId()
@@ -64,5 +64,4 @@ public:
 	{
 		this->adText = adText;
 	}
-
 };
