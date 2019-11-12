@@ -82,12 +82,13 @@ public:
 	{
 		for (int i = 0; i < ads.size(); i++)
 		{
-			if (ads[i].GetId() == id)
+			if (ads[i].GetId() == ad.GetId())
 			{
 				return false;
 			}
 		}
 		this->ads.push_back(ad);
+		return true;
 	}
 
 	bool DeleteAdvertisement(int id)
