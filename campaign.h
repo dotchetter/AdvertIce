@@ -1,4 +1,5 @@
 #pragma once
+#include <ctime>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -76,6 +77,17 @@ public:
 	void SetCampaignCost(float campaignCost)
 	{
 		this->campaignCost = campaignCost;
+	}
+
+	bool IsActive()
+	{
+		time_t now = time(NULL);
+
+		if (fromDateTime >= now && toDateTime >= now)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	bool CommitAdvertisement(Ad ad)
