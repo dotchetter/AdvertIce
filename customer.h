@@ -44,4 +44,19 @@ public:
 		campaigns.push_back(campaignObject);
 		return true;
 	}
+
+	bool hasActiveCampaigns()
+	{
+		// Använd Campaign instansernas from och to för att utvärdera om någon av dem är giltig
+	}
+
+	vector<Campaign> GetAllCampaigns()
+	{
+		vector<Campaign> AllCampaigns;
+		for (Campaign i : campaigns)
+		{
+			AllCampaigns.push_back(i);
+		}
+		return AllCampaigns;
+	}
 };
