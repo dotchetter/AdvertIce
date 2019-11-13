@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <random>
 #include <vector>
+#include <ctime>
+#include <map>
 #include "customer.h"
 
 using namespace std;
@@ -10,12 +12,9 @@ using namespace std;
 class AdServingEngine
 {
 	vector<Customer> customerBase;
+	map<int, float> CustomerTotalDeposit;
 
 public:
-	AdServingEngine()
-	{
-		//pass
-	}
 
 	void UpdateCustomerBase(vector<Customer> customerBase)
 	{
@@ -24,16 +23,57 @@ public:
 
 	Ad GetNextAd()
 	{
-		int random_customer = rand() % (customerBase.size());
-		vector<Campaign> campaigns = customerBase[random_customer].GetAllCampaigns();
 
-		int random_campaign = rand() % (campaigns.size());
-		Campaign selected_campaign = campaigns[random_campaign];
+		float allCustomersTotalDeposit = 0;
+		float thisCustomerTotalDeposit = 0;
 
-		vector<Ad> ads = selected_campaign.GetAllAds();
+		int customerSelector;
+		int campaignSelector;
 
-		int random_ad = rand() % (ads.size());
-		return ads[random_ad];
+		int selectedCustomerID;
+		float selectedCustomerTotalDeposit;
+
+		for (Customer i : customerBase) 
+		{
+			thisCustomerTotalDeposit = 0;
+			for (Campaign c : i.GetAllCampaigns())
+			{
+				allCustomersTotalDeposit += c.GetCampaignCost();
+				thisCustomerTotalDeposit += c.GetCampaignCost();
+			}
+			CustomerTotalDeposit.insert(make_pair(i.GetId(), thisCustomerTotalDeposit));
+		}
+
+		customerSelector = rand() % ((int)allCustomersTotalDeposit + 1);
+
+		for (auto i = CustomerTotalDeposit.begin(); i != CustomerTotalDeposit.end(); i++)
+		{
+			customerSelector -= i->second;
+			if (customerSelector <= 0)
+			{
+				selectedCustomerID = i->first;
+				selectedCustomerTotalDeposit = i->second;
+				break;
+			}
+		}
+
+		campaignSelector = rand() % ((int)selectedCustomerTotalDeposit + 1);
+
+		for (Customer i : customerBase)
+		{
+			if (i.GetId() == selectedCustomerID)
+			{
+				for (Campaign c : i.GetAllCampaigns())
+				{
+					campaignSelector -= c.GetCampaignCost();
+
+					if (campaignSelector <= 0)
+					{
+						return c.GetRandomAd();
+					}
+				}
+			}
+		}
 	}
 
 	size_t GetNumberOfCustomers()
