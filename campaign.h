@@ -115,4 +115,9 @@ public:
 		}
 		return false;
 	}
+
+	vector<Ad> GetAllAds()
+	{
+		return ads;
+	}
 };
