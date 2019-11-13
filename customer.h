@@ -13,7 +13,6 @@ class Customer
 	vector<Campaign> campaigns;
 public:
 	
-
 	Customer(string name, int id)
 	{
 		this->name = name;
@@ -44,6 +43,19 @@ public:
 	{
 		campaigns.push_back(campaignObject);
 		return true;
+	}
+
+	bool DeleteCampaign(int id)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == id)
+			{
+				campaigns.erase(campaigns.begin() + i);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	bool CommitAdvertisement(Ad ad, int campaignID)
