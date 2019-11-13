@@ -78,11 +78,6 @@ public:
 		this->campaignCost = campaignCost;
 	}
 
-	vector<Ad> GetAllAds()
-	{
-		return ads;
-	}
-
 	bool IsActive()
 	{
 		time_t now = time(NULL);
@@ -120,3 +115,8 @@ public:
 		return false;
 	}
 };
+
+vector<Ad> GetAllAds()
+{
+	return ads;
+}
