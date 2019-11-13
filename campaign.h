@@ -83,16 +83,28 @@ public:
 		return ads;
 	}
 
+	bool IsActive()
+	{
+		time_t now = time(NULL);
+
+		if (fromDateTime <= now && toDateTime >= now)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	bool CommitAdvertisement(Ad ad)
 	{
 		for (int i = 0; i < ads.size(); i++)
 		{
-			if (ads[i].GetId() == id)
+			if (ads[i].GetId() == ad.GetId())
 			{
 				return false;
 			}
 		}
 		this->ads.push_back(ad);
+		return true;
 	}
 
 	bool DeleteAdvertisement(int id)
