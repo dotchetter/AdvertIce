@@ -64,5 +64,4 @@ public:
 	{
 		this->adText = adText;
 	}
-
 };
