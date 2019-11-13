@@ -17,12 +17,15 @@ class AdServingEngine
 	}
 
 public:
+	Ad GetNextAd()
+	{
 
-
+	}
 };
 
 
 int main()
 {
-	Customer* testcustomer = new Customer();
+	Customer testcustomer = Customer("Kalles kaviar", 321587654);
+
 }
