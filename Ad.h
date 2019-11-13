@@ -23,6 +23,8 @@ public:
 	{
 		this->name = name;
 		this->adText = text;
+		this->id = id;
+		this->adType = type;
 	}
 
 	string GetName()
