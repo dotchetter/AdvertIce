@@ -78,6 +78,11 @@ public:
 		this->campaignCost = campaignCost;
 	}
 
+	vector<Ad> GetAllAds()
+	{
+		return ads;
+	}
+
 	bool CommitAdvertisement(Ad ad)
 	{
 		for (int i = 0; i < ads.size(); i++)
