@@ -92,14 +92,14 @@ public:
 
 	bool CommitAdvertisement(Ad ad)
 	{
-		for (int i = 0; i < ads.size(); i++)
+		for (Ad i : ads)
 		{
-			if (ads[i].GetId() == ad.GetId())
+			if (i.GetId() == ad.GetId())
 			{
 				return false;
 			}
 		}
-		this->ads.push_back(ad);
+		ads.push_back(ad);
 		return true;
 	}
 
