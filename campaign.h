@@ -5,6 +5,7 @@
 #include <iostream>
 #include <exception>
 #include <ctime>
+#include <random>
 #include "Ad.h"
 
 using namespace std;
@@ -77,6 +78,16 @@ public:
 	void SetCampaignCost(float campaignCost)
 	{
 		this->campaignCost = campaignCost;
+	}
+
+	Ad GetRandomAd()
+	{
+		int randomAdIndex = rand() % ads.size();
+
+		if (ads.size() > 0) 
+		{
+			return ads[randomAdIndex];
+		}
 	}
 
 	bool IsActive()
