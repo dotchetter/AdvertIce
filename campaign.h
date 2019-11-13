@@ -114,9 +114,9 @@ public:
 		}
 		return false;
 	}
-};
 
-vector<Ad> GetAllAds()
-{
-	return ads;
-}
+	vector<Ad> GetAllAds()
+	{
+		return ads;
+	}
+};
