@@ -19,10 +19,12 @@ private:
 
 public:
 
-	Ad(string name, string text)
+	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
 	{
 		this->name = name;
 		this->adText = text;
+		this->id = id;
+		this->adType = type;
 	}
 
 	string GetName()
@@ -32,7 +34,7 @@ public:
 
 	void SetName(string name)
 	{
-		this->name = name; // Inkludera felhantering och datavalidering
+		this->name = name;
 	}
 
 	int GetId()

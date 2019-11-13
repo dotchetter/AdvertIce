@@ -1,4 +1,5 @@
 #pragma once
+#include <ctime>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -78,16 +79,27 @@ public:
 		this->campaignCost = campaignCost;
 	}
 
+	bool IsActive()
+	{
+		time_t now = time(NULL);
+
+		if (fromDateTime <= now && toDateTime >= now)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	bool CommitAdvertisement(Ad ad)
 	{
-		for (int i = 0; i < ads.size(); i++)
+		for (Ad i : ads)
 		{
-			if (ads[i].GetId() == ad.GetId())
+			if (i.GetId() == ad.GetId())
 			{
 				return false;
 			}
 		}
-		this->ads.push_back(ad);
+		ads.push_back(ad);
 		return true;
 	}
 
@@ -102,5 +114,10 @@ public:
 			}
 		}
 		return false;
+	}
+
+	vector<Ad> GetAllAds()
+	{
+		return ads;
 	}
 };

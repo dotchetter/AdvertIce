@@ -11,8 +11,9 @@ class Customer
 	string name;
 	int id;
 	vector<Campaign> campaigns;
-
 public:
+	
+
 	Customer(string name, int id)
 	{
 		this->name = name;
@@ -45,18 +46,44 @@ public:
 		return true;
 	}
 
+	bool CommitAdvertisement(Ad ad, int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].CommitAdvertisement(ad);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	bool hasActiveCampaigns()
 	{
-		// Använd Campaign instansernas from och to för att utvärdera om någon av dem är giltig
+		for (Campaign i : campaigns)
+		{
+			if (i.IsActive())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	vector<Campaign> GetAllCampaigns()
 	{
-		vector<Campaign> AllCampaigns;
-		for (Campaign i : campaigns)
+		return campaigns;
+	}
+
+	vector<Ad> GetAllAdsForCampaign(int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
 		{
-			AllCampaigns.push_back(i);
+			if (campaigns[i].GetId() == campaignID)
+			{
+				return campaigns[i].GetAllAds();
+			}
 		}
-		return AllCampaigns;
 	}
 };
