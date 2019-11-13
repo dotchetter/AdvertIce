@@ -11,8 +11,9 @@ class Customer
 	string name;
 	int id;
 	vector<Campaign> campaigns;
-
 public:
+	
+
 	Customer(string name, int id)
 	{
 		this->name = name;
@@ -45,6 +46,19 @@ public:
 		return true;
 	}
 
+	bool CommitAdvertisement(Ad ad, int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].CommitAdvertisement(ad);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	bool hasActiveCampaigns()
 	{
 		for (Campaign i : campaigns)
@@ -60,5 +74,16 @@ public:
 	vector<Campaign> GetAllCampaigns()
 	{
 		return campaigns;
+	}
+
+	vector<Ad> GetAllAdsForCampaign(int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				return campaigns[i].GetAllAds();
+			}
+		}
 	}
 };
