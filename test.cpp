@@ -38,7 +38,6 @@ time_t makedate()
 
 	if (!validInput)
 	{
-		cout << "Invalid entry, try again." << endl;
 		return NULL;
 	}
 	return mktime(&tm);
@@ -46,7 +45,8 @@ time_t makedate()
 
 int main()
 {
-	
+	srand(time(NULL));
+
 	cout << "Enter the start date for your campaign!" << endl;
 	time_t begin = makedate();
 
@@ -60,25 +60,25 @@ int main()
 
 	Customer the_client = Customer("Foobar AB", 123);
 
-	the_client.AddCampaign(Campaign(begin, end, 1234, "Christmas!", 123455.0f));
-	the_client.AddCampaign(Campaign(begin, end, 12345, "New Year", 10000.f));
+	the_client.AddCampaign(Campaign(begin, end, 1234, "Christmas!", 500));
+	the_client.AddCampaign(Campaign(begin, end, 12345, "New Year", 500));
 	
-	the_client.CommitAdvertisement(Ad("SALE!!", "Cheap presents that no one wanted", 123456), 1234);
-	the_client.CommitAdvertisement(Ad("SuperSale", "30% off!", 123456789), 1234);
+	the_client.CommitAdvertisement(Ad("SALE!!", "theClient", 123456), 1234);
+	the_client.CommitAdvertisement(Ad("SuperSale", "theClient", 123456789), 1234);
 
-	the_client.CommitAdvertisement(Ad("New year craze, must buy!", "50% off for a limited time", 123456), 12345);
-	the_client.CommitAdvertisement(Ad("Are you feeling hungry?", "Best potatoes in town!", 123456789), 12345);
+	the_client.CommitAdvertisement(Ad("New year craze, must buy!", "theClient", 123456), 12345);
+	the_client.CommitAdvertisement(Ad("Are you feeling hungry?", "theClient", 123456789), 12345);
 
 	Customer the_other_client = Customer("Foo bar AB", 111111);
 
-	the_other_client.AddCampaign(Campaign(begin, end, 456, "Other client christmas!", 123455.0f));
-	the_other_client.AddCampaign(Campaign(begin, end, 789, "Other clients new year", 123455.0f));
+	the_other_client.AddCampaign(Campaign(begin, end, 456, "Other client christmas!", 700));
+	the_other_client.AddCampaign(Campaign(begin, end, 789, "Other clients new year", 600));
 	
-	the_other_client.CommitAdvertisement(Ad("SALE!!", "We buy back old stuff!", 234565), 456);
-	the_other_client.CommitAdvertisement(Ad("SuperDUPERSale", "90% off!!!!!", 35377), 456);
+	the_other_client.CommitAdvertisement(Ad("SALE!!", "theOtherClient", 234565), 456);
+	the_other_client.CommitAdvertisement(Ad("SuperDUPERSale", "theOtherClient", 35377), 456);
 
-	the_other_client.CommitAdvertisement(Ad("New year never felt so good!", "75% off!!!", 3456345), 789);
-	the_other_client.CommitAdvertisement(Ad("Are you feeling hungry?", "Best burgers in town!", 5677467), 789);
+	the_other_client.CommitAdvertisement(Ad("New year never felt so good!", "theOtherClient", 3456345), 789);
+	the_other_client.CommitAdvertisement(Ad("Are you feeling hungry?", "theOtherClient", 5677467), 789);
 
 	vector<Customer> all_customers;
 
@@ -90,11 +90,8 @@ int main()
 
 	while (true)
 	{
-		Sleep(3000);
-		Ad next = engine.GetNextAd();
-
-		cout << next.GetName() << endl;
-		cout << next.GetText() << endl;
-		cout << "\n";
+		Sleep(500);
+		Ad newAd = engine.GetNextAd();
+		cout << newAd.GetName() << endl << newAd.GetText() << endl << endl;
 	}
 }
