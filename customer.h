@@ -8,9 +8,10 @@ using namespace std;
 
 class Customer
 {
+	vector<Campaign> campaigns;
 	string name;
 	int id;
-	vector<Campaign> campaigns;
+
 public:
 	
 	Customer(string name, int id)
@@ -81,6 +82,23 @@ public:
 			}
 		}
 		return false;
+	}
+
+	bool campaignExists(int id)
+	{
+		for (Campaign c : campaigns)
+		{
+			if (c.GetId() == id)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	int numberOfCampaigns()
+	{
+		return campaigns.size();
 	}
 
 	vector<Campaign> GetAllCampaigns()
