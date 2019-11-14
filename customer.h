@@ -72,6 +72,18 @@ public:
 		return false;
 	}
 
+	bool DeleteAdvertisement(int id, int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].DeleteAdvertisement(id);
+			}
+		}
+		return false;
+	}
+
 	bool hasActiveCampaigns()
 	{
 		for (Campaign i : campaigns)
