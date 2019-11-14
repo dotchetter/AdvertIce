@@ -27,6 +27,9 @@
     <ClInclude Include="AdServingEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IdGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="campaign.h">
