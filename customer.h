@@ -96,6 +96,17 @@ public:
 		return false;
 	}
 
+	void renameCampaign(int campaignID, string name)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].SetName(name);
+			}
+		}
+	}
+
 	bool campaignExists(int id)
 	{
 		for (Campaign c : campaigns)
