@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include "customer.h"
 #include "AdServingEngine.h"
+#include "IdGenerator.h"
 
 using namespace std;
 
@@ -54,18 +55,16 @@ int GetIndexOfCustomer(vector<Customer> &AllCustomers, int id)
 	} return -1;
 }
 
-void AddCustomer(vector<Customer> &AllCustomers)
+void AddCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 {
 	string customerName;
 	int customerID;
 
-	cout << "Enter customer name: ";
+	cout << " -> Enter customer name: ";
 	cin >> customerName;
-	cout << "Enter customer ID: ";
-	cin >> customerID;
 
-	AllCustomers.push_back(Customer(customerName, customerID));
-	cout << endl << endl;
+	AllCustomers.push_back(Customer(customerName, idGenerator.Get()));
+	cout << " -> Customer added successfully. " << endl << endl;
 }
 
 void ListAllCampaignsForCustomer(vector<Customer> &AllCustomers, int indexForCustomer)
@@ -81,7 +80,7 @@ void ListAllCampaignsForCustomer(vector<Customer> &AllCustomers, int indexForCus
 	cout << endl << endl;
 }
 
-void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer)
+void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdGenerator &idGenerator)
 {
 	int selection;
 	int campaignIdBuf;
@@ -100,7 +99,7 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer)
 	cout << "[2] Create Ad" << endl;
 	cout << "[3] Delete Ad" << endl;
 	cout << "[4] Back" << endl;
-	cout << endl << "-> "; cin >> selection;
+	cout << endl << " -> "; cin >> selection;
 
 	ListAllCampaignsForCustomer(AllCustomers, indexForCustomer);
 	switch (selection)
@@ -126,7 +125,6 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer)
 		
 		cout << " -- Advertisement name: " << endl << " -> "; cin >> advertisementName;
 		cout << " -- Advertisement text: " << endl << " -> "; cin >> advertisementText;
-		cout << " -- Advertisement ID: " << endl << " -> "; cin >> advertisementId;
 		cout << " --> This option comes in three flavors. Select with 1-3 and hit enter." << endl;
 		cout << "1. Blinking" << endl << "2. Static, plain text" << endl << "3. Scrolling" << endl;
 		cout << " -> "; cin >> adTypeSelection;
@@ -147,7 +145,7 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer)
 			return;
 		}
 		AllCustomers[indexForCustomer].CommitAdvertisement(
-			Ad(advertisementName, advertisementText, advertisementId, adtypeBuf), campaignIdBuf);
+			Ad(advertisementName, advertisementText, idGenerator.Get(), adtypeBuf), campaignIdBuf);
 		break;
 	case 3:
 		cout << "Enter Id for the ad to delete: " << endl; cout << " -> "; cin >> advertisementId;
@@ -170,17 +168,30 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer)
 
 void ListAllCustomers(vector<Customer> &AllCustomers)
 {
-	cout << endl << " -------- All customers: -------- " << endl;
-	cout << " --- <Name>\t\t<ID> --- " << endl << endl;
+	string idRepresentation;
+	const int headerLength = 22;
+	int totalLength;
+	int remainingWhitespace;
+
+	cout << endl << " -------- All customers: -------- " << endl; // 34 ch
+	cout << " --- <Name> ------------ <ID> --- " << endl << endl;
 
 	for (Customer c : AllCustomers)
 	{
-		cout << " --- " << c.GetName() << "\t\t" << c.GetId() << " --- " << endl;
+		idRepresentation = to_string(c.GetId());
+		totalLength = c.GetName().length() + idRepresentation.length();
+		remainingWhitespace = (headerLength - totalLength);
+		cout << "    " << c.GetName();
+		for (int i = 0; i < remainingWhitespace; i++)
+		{
+			cout << " ";
+		}
+		cout << " " << c.GetId() << endl;
 	}
 	cout << endl << endl;
 }
 
-void EditCustomer(vector<Customer> &AllCustomers)
+void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 {
 	int indexForCustomer = 0;
 	int customerIdBuf;
@@ -223,13 +234,10 @@ void EditCustomer(vector<Customer> &AllCustomers)
 		break;
 	case 3:
 		cout << "Enter campaign name: ";
-		cout << endl << "-> "; cin >> campaignNameBuf;
-
-		cout << "Enter campaign ID: ";
-		cout << endl << "-> "; cin >> idBuf;
+		cout << endl << " -> "; cin >> campaignNameBuf;
 
 		cout << "Enter campaign investment: ";
-		cout << endl << "-> "; cin >> campaignCostBuf;
+		cout << endl << " -> "; cin >> campaignCostBuf;
 
 		cout << "Enter Year, Month, Day for the beginning of this campaign: " << endl;
 		begin = makedate();
@@ -238,18 +246,18 @@ void EditCustomer(vector<Customer> &AllCustomers)
 		end = makedate();
 
 		AllCustomers[indexForCustomer].AddCampaign(
-			Campaign(begin, end, idBuf, campaignNameBuf, campaignCostBuf));
+			Campaign(begin, end, idGenerator.Get(), campaignNameBuf, campaignCostBuf));
 		break;
 	case 4:
 		cout << "Enter campaign ID: ";
-		cout << endl << "-> "; cin >> idBuf;
+		cout << endl << " -> "; cin >> idBuf;
 		AllCustomers[indexForCustomer].DeleteCampaign(idBuf);
 		break;
 	case 5:
 		ListAllCampaignsForCustomer(AllCustomers, indexForCustomer);
 		break;
 	case 6:
-		AdvertisementMenu(AllCustomers, indexForCustomer);
+		AdvertisementMenu(AllCustomers, indexForCustomer, idGenerator);
 		break;
 	}
 }
@@ -263,7 +271,7 @@ int MainMenu()
 	cout << "[3] List all customers" << endl;
 	cout << "[4] Enter runtime" << endl;
 	cout << "[5] Exit" << endl;
-	cout << endl << "-> "; cin >> selection;
+	cout << endl << " -> "; cin >> selection;
 	
 	return selection;
 }
@@ -273,8 +281,10 @@ int main()
 	srand(time(NULL));
 
 	AdServingEngine engine = AdServingEngine();
+	IdGenerator idGenerator = IdGenerator();
 	vector<Customer>AllCustomers;
 	int selection;
+	int adAmount = 0;
 
 	while (true)
 	{
@@ -282,33 +292,53 @@ int main()
 		switch (selection)
 		{
 		case 1:
-			AddCustomer(AllCustomers);
+			AddCustomer(AllCustomers, idGenerator);
 			break;
 		case 2:
-			EditCustomer(AllCustomers);
+			EditCustomer(AllCustomers, idGenerator);
 			break;
 		case 3:
 			if (AllCustomers.size() < 1)
 			{
-				cout << "There are no stored customers in the system." << endl << endl;
+				cout << endl << "-> There are no stored customers in the system." << endl << endl;
 				break;
 			}
 			ListAllCustomers(AllCustomers);
 			break;
 		case 4:
+			for (Customer c : AllCustomers)
+			{
+				for (Campaign i : c.GetAllCampaigns())
+				{
+					adAmount += i.GetAllAds().size();
+				}
+			}
+
+			if (AllCustomers.size() < 1 or adAmount == 0)
+			{
+				cout << endl << "-> There are no stored customers, or no ads in the system." << endl << endl;
+				break;
+			}
+			cout << ">>> Entering runtime. Ads will be displayed in a weighted randomized pattern. <<<" << endl;
+			cout << ">>> To exit, hit and hold the ESC key. <<<" << endl;
 			engine.UpdateCustomerBase(AllCustomers);
 			while (true)
 			{
+				if (GetKeyState(VK_ESCAPE) & 0x8000)
+				{
+					break;
+				}
 				Ad newAd = engine.GetNextAd();
 				cout << endl << endl << newAd.GetName() << endl << newAd.GetText();
 				Sleep(1000);
 			}
 			break;
 		case 5:
-			break;
+			exit(0);
 		}
 	}	
 }
+
 
 
 void WorkingModel()
