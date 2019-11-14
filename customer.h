@@ -72,6 +72,18 @@ public:
 		return false;
 	}
 
+	bool DeleteAdvertisement(int id, int campaignID)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].DeleteAdvertisement(id);
+			}
+		}
+		return false;
+	}
+
 	bool hasActiveCampaigns()
 	{
 		for (Campaign i : campaigns)
@@ -82,6 +94,17 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void renameCampaign(int campaignID, string name)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].SetName(name);
+			}
+		}
 	}
 
 	bool campaignExists(int id)
