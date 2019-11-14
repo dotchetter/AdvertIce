@@ -60,8 +60,10 @@ void AddCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 	string customerName;
 	int customerID;
 
-	cout << " -> Enter customer name: ";
-	cin >> customerName;
+	cout << "Enter customer name: " <<endl;
+	getline(cin >> ws,customerName);
+	cout << "Enter customer ID: ";
+	cin >> customerID;
 
 	AllCustomers.push_back(Customer(customerName, idGenerator.Get()));
 	cout << " -> Customer added successfully. " << endl << endl;
@@ -123,8 +125,8 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdG
 			return;
 		}
 		
-		cout << " -- Advertisement name: " << endl << " -> "; cin >> advertisementName;
-		cout << " -- Advertisement text: " << endl << " -> "; cin >> advertisementText;
+		cout << " -- Advertisement name: " << endl << " -> "; getline(cin >> ws, advertisementName);;
+		cout << " -- Advertisement text: " << endl << " -> "; getline(cin >> ws, advertisementText);;
 		cout << " --> This option comes in three flavors. Select with 1-3 and hit enter." << endl;
 		cout << "1. Blinking" << endl << "2. Static, plain text" << endl << "3. Scrolling" << endl;
 		cout << " -> "; cin >> adTypeSelection;
@@ -225,7 +227,7 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 	case 1:
 		cout << "Enter the new name for customer " <<
 			AllCustomers[indexForCustomer].GetName() <<
-			endl; cout << " -> "; cin >> newNameBuf;
+			endl; cout << " -> "; getline(cin >> ws, newNameBuf);;
 		AllCustomers[indexForCustomer].SetName(newNameBuf);
 		break;
 	case 2:
@@ -234,7 +236,7 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 		break;
 	case 3:
 		cout << "Enter campaign name: ";
-		cout << endl << " -> "; cin >> campaignNameBuf;
+		cout << endl << "-> "; getline(cin >> ws, campaignNameBuf);;
 
 		cout << "Enter campaign investment: ";
 		cout << endl << " -> "; cin >> campaignCostBuf;
@@ -343,7 +345,7 @@ int main()
 
 void WorkingModel()
 {
-	/*srand(time(NULL));
+	srand(time(NULL));
 
 	cout << "Enter the start date for your campaign!" << endl;
 	time_t begin = makedate();
@@ -391,5 +393,5 @@ void WorkingModel()
 		Sleep(500);
 		Ad newAd = engine.GetNextAd();
 		cout << newAd.GetName() << endl << newAd.GetText() << endl << endl;
-	}*/
+	}
 }
