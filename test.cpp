@@ -15,11 +15,11 @@ time_t makedate()
 	struct tm tm = {0};
 	bool validInput = true;
 
-	cout << "Enter year: "; cin >> Year;
-	cout << "Enter Month: "; cin >> Month;
-	cout << "Enter Day: "; cin >> Day;
-	cout << "Enter Hour: "; cin >> Hour;
-	cout << "Enter Minute: "; cin >> Minute;
+	cout << endl << "Enter Month: " << endl << endl << " -> "; cin >> Month;
+	cout << endl << "Enter Day: " << endl << endl << " -> "; cin >> Day;
+	cout << endl << "Enter Hour: " << endl << endl << " -> "; cin >> Hour;
+	cout << endl << "Enter Minute: " << endl << endl << " -> "; cin >> Minute;
+	cout << endl;
 	
 	tm.tm_year = Year - 1900;
 	tm.tm_mon = Month - 1;
@@ -60,13 +60,13 @@ void AddCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 	string customerName;
 	int customerID;
 
-	cout << "Enter customer name: " <<endl;
+	cout << endl << "Enter customer name: " << endl << endl << " -> ";
 	getline(cin >> ws,customerName);
-	cout << "Enter customer ID: ";
+	cout << endl << "Enter customer ID: " << endl << endl << " -> ";
 	cin >> customerID;
 
 	AllCustomers.push_back(Customer(customerName, idGenerator.Get()));
-	cout << " -> Customer added successfully. " << endl << endl;
+	cout << endl << "Customer added successfully. " << endl << endl;
 }
 
 void ListAllCampaignsForCustomer(vector<Customer> &AllCustomers, int indexForCustomer)
@@ -205,7 +205,7 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 	time_t begin;
 	time_t end;
 
-	cout << "Enter the ID for the customer" << endl; cout << " -> "; cin >> customerIdBuf;
+	cout << endl << "Enter the ID for the customer:" << endl << endl; cout << " -> "; cin >> customerIdBuf;
 	indexForCustomer = GetIndexOfCustomer(AllCustomers, customerIdBuf);
 
 	if (indexForCustomer == -1)
@@ -220,31 +220,31 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 	cout << "[4] Delete campaign" << endl;
 	cout << "[5] List all campaigns" << endl;
 	cout << "[6] Advertisement menu" << endl;
-	cout << " -> "; cin >> selection;
+	cout << endl << " -> "; cin >> selection;
 
 	switch (selection)
 	{
 	case 1:
-		cout << "Enter the new name for customer " <<
-			AllCustomers[indexForCustomer].GetName() <<
-			endl; cout << " -> "; getline(cin >> ws, newNameBuf);;
+		cout << endl << "Enter the new name for customer [ " <<
+			AllCustomers[indexForCustomer].GetName() << " ] :" << endl <<
+			endl; cout << " -> "; getline(cin >> ws, newNameBuf);
 		AllCustomers[indexForCustomer].SetName(newNameBuf);
 		break;
 	case 2:
 		AllCustomers.erase(AllCustomers.begin() + indexForCustomer);
-		cout << "Customer deleted." << endl;
+		cout << endl <<  "Customer deleted." << endl << endl;
 		break;
 	case 3:
-		cout << "Enter campaign name: ";
+		cout << endl << "Enter campaign name: " << endl;
 		cout << endl << "-> "; getline(cin >> ws, campaignNameBuf);;
 
-		cout << "Enter campaign investment: ";
+		cout << endl << "Enter campaign investment: " << endl;
 		cout << endl << " -> "; cin >> campaignCostBuf;
 
-		cout << "Enter Year, Month, Day for the beginning of this campaign: " << endl;
+		cout << endl << "Campaign start date :" << endl;
 		begin = makedate();
 
-		cout << "Enter Year, Month, Day for the end of this campaign: " << endl;
+		cout << "Campaign end date :" << endl;
 		end = makedate();
 
 		AllCustomers[indexForCustomer].AddCampaign(
