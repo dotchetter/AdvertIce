@@ -82,10 +82,9 @@ public:
 
 	Ad GetRandomAd()
 	{
-		int randomAdIndex = rand() % ads.size();
-
-		if (ads.size() > 0) 
+		if (ads.size() > 0)
 		{
+			int randomAdIndex = rand() % ads.size();
 			return ads[randomAdIndex];
 		}
 	}
