@@ -23,13 +23,10 @@ public:
 
 	Ad GetNextAd()
 	{
-
 		float allCustomersTotalDeposit = 0;
 		float thisCustomerTotalDeposit = 0;
-
 		int customerSelector;
 		int campaignSelector;
-
 		int selectedCustomerID;
 		float selectedCustomerTotalDeposit;
 
@@ -48,7 +45,7 @@ public:
 
 		for (auto i = CustomerTotalDeposit.begin(); i != CustomerTotalDeposit.end(); i++)
 		{
-			customerSelector -= i->second;
+			customerSelector -= (int)i->second;
 			if (customerSelector <= 0)
 			{
 				selectedCustomerID = i->first;
@@ -65,7 +62,7 @@ public:
 			{
 				for (Campaign c : i.GetAllCampaigns())
 				{
-					campaignSelector -= c.GetCampaignCost();
+					campaignSelector -= (int)c.GetCampaignCost();
 
 					if (campaignSelector <= 0)
 					{
