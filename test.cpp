@@ -270,9 +270,10 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 		cout << "[2] Delete customer" << endl;
 		cout << "[3] Add campaign" << endl;
 		cout << "[4] Delete campaign" << endl;
-		cout << "[5] List all campaigns" << endl;
-		cout << "[6] Advertisement menu" << endl;
-		cout << "[7] Back" << endl;
+		cout << "[5] Rename campaign" << endl;
+		cout << "[6] List all campaigns" << endl;
+		cout << "[7] Advertisement menu" << endl;
+		cout << "[8] Back" << endl;
 
 		cout << " -> "; cin >> selection;
 
@@ -345,15 +346,31 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 				cout << " -> An error occured deleting this campaign. Did you enter a valid id?" << endl;
 			}
 			break;
-
 		case 5:
-			ListAllCampaignsForCustomer(AllCustomers, indexForCustomer);
+			cout << "Enter campaign ID: ";
+			cout << endl << " -> "; cin >> idBuf;
+
+			if (!cin)
+			{
+				cin.clear();
+				cin.ignore(256, '\n');
+				cout << " -> Invalid entry - only digits allowed." << endl;
+				break;
+			}
+
+			cout << "Enter campaign name: ";
+			cout << endl << "-> "; getline(cin >> ws, campaignNameBuf);
+			AllCustomers[indexForCustomer].renameCampaign(idBuf, campaignNameBuf);
 			break;
 
 		case 6:
+			ListAllCampaignsForCustomer(AllCustomers, indexForCustomer);
+			break;
+
+		case 7:
 			AdvertisementMenu(AllCustomers, indexForCustomer, idGenerator);
 			break;
-		case 7:
+		case 8:
 			return;
 		}
 	}
@@ -408,15 +425,18 @@ int main()
 		case 4:
 			for (Customer c : AllCustomers)
 			{
-				for (Campaign i : c.GetAllCampaigns())
+				if (c.hasActiveCampaigns())
 				{
-					adAmount += i.GetAllAds().size();
-				}
+					for (Campaign i : c.GetAllCampaigns())
+					{
+						adAmount += i.GetAllAds().size();
+					}
+				}				
 			}
 
 			if (AllCustomers.size() < 1 or adAmount == 0)
 			{
-				cout << endl << "-> There are no stored customers, or no ads in the system." << endl << endl;
+				cout << endl << "-> There are no stored customers, no valid campaigns or no ads in the system." << endl << endl;
 				break;
 			}
 			cout << " -> Hit enter to start runtime. Ads will be displayed in a weighted randomized pattern." << endl;
@@ -430,6 +450,7 @@ int main()
 				{
 					break;
 				}
+
 				Ad newAd = engine.GetNextAd();
 				system("cls");
 
@@ -519,6 +540,7 @@ void test_main()
 			break;
 		}
 		Ad newAd = engine.GetNextAd();
+
 		system("cls");
 
 		switch (newAd.GetType())
