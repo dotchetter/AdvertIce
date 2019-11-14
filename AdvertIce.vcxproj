@@ -155,6 +155,7 @@
     <ClInclude Include="AdServingEngine.h" />
     <ClInclude Include="AdType.h" />
     <ClInclude Include="customer.h" />
+    <ClInclude Include="IdGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="campaign.h" />
