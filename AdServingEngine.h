@@ -33,10 +33,18 @@ public:
 		for (Customer i : customerBase) 
 		{
 			thisCustomerTotalDeposit = 0;
+
+			if (!i.hasActiveCampaigns()) {
+				continue;
+			}
+
 			for (Campaign c : i.GetAllCampaigns())
 			{
-				allCustomersTotalDeposit += c.GetCampaignCost();
-				thisCustomerTotalDeposit += c.GetCampaignCost();
+				if (c.IsActive())
+				{
+					allCustomersTotalDeposit += c.GetCampaignCost();
+					thisCustomerTotalDeposit += c.GetCampaignCost();
+				}
 			}
 			CustomerTotalDeposit.insert(make_pair(i.GetId(), thisCustomerTotalDeposit));
 		}
@@ -62,9 +70,12 @@ public:
 			{
 				for (Campaign c : i.GetAllCampaigns())
 				{
-					campaignSelector -= (int)c.GetCampaignCost();
+					if (c.IsActive())
+					{
+						campaignSelector -= (int)c.GetCampaignCost();
+					}					
 
-					if (campaignSelector <= 0)
+					if (campaignSelector <= 0 and c.IsActive())
 					{
 						return c.GetRandomAd();
 					}
