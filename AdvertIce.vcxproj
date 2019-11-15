@@ -163,12 +163,10 @@
   <ItemGroup>
     <ClCompile Include="Ad.cpp" />
     <ClCompile Include="AdServingEngine.cpp" />
-    <ClCompile Include="AdType.cpp" />
     <ClCompile Include="Campaign.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="IdGenerator.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

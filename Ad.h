@@ -19,51 +19,21 @@ private:
 
 public:
 
-	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
-	{
-		this->name = name;
-		this->adText = text;
-		this->id = id;
-		this->adType = type;
-	}
+	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT);
 
-	string GetName()
-	{
-		return name;
-	}
+	string GetName();
 
-	void SetName(string name)
-	{
-		this->name = name;
-	}
+	void SetName(string name);
 
-	int GetId()
-	{
-		return id;
-	}
+	int GetId();
 
-	void SetId(int id)
-	{
-		this->id = id;
-	}
+	void SetId(int id);
 
-	AdType GetType()
-	{
-		return adType;
-	}
+	AdType GetType();
 
-	void SetType(AdType type)
-	{
-		this->adType = type;
-	}
+	void SetType(AdType type);
 
-	string GetText()
-	{
-		return adText;
-	}
+	string GetText();
 
-	void SetText(string adText)
-	{
-		this->adText = adText;
-	}
+	void SetText(string adText);
 };
