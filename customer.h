@@ -47,5 +47,4 @@ public:
 	vector<Campaign> GetAllCampaigns();
 
 	vector<Ad> GetAllAdsForCampaign(int campaignID);
-	
 };

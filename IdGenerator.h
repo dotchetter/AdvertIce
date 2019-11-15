@@ -9,9 +9,5 @@ class IdGenerator
 	int previouslyGenerated = 0;
 	
 public:
-	int Get()
-	{
-		previouslyGenerated += 1;
-		return previouslyGenerated;
-	}
+	int Get();
 };

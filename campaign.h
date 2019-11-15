@@ -1,5 +1,4 @@
 #pragma once
-#include <ctime>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -9,7 +8,6 @@
 #include "Ad.h"
 
 using namespace std;
-
 
 class Campaign
 {
@@ -21,126 +19,37 @@ class Campaign
 	vector<Ad> ads;
 
 public:
-	Campaign(time_t fromDateTime, time_t toDateTime, int id, string name, float campaignCost)
-	{
-		this->fromDateTime = fromDateTime;
-		this->toDateTime = toDateTime;
-		this->id = id;
-		this->name = name;
-		this->campaignCost = campaignCost;
-	}
+	Campaign(time_t fromDateTime, time_t toDateTime, int id, string name, float campaignCost);
+	
+	time_t GetFromDateTime();
 
-	time_t GetFromDateTime()
-	{
-		return fromDateTime;
-	}
+	void SetFromDateTime(time_t fromDateTime);
 
-	void SetFromDateTime(time_t fromDateTime)
-	{
-		this->fromDateTime = fromDateTime;
-	}
+	time_t GetToDateTime();
 
-	time_t GetToDateTime()
-	{
-		return toDateTime;
-	}
+	void SetToDateTime(time_t toDateTime);
 
-	void SetToDateTime(time_t toDateTime)
-	{
-		this->toDateTime = toDateTime;
-	}
+	int GetId();
 
-	int GetId()
-	{
-		return id;
-	}
+	void SetId(int id);
 
-	void SetId(int id)
-	{
-		this->id = id;
-	}
+	string GetName();
 
-	string GetName()
-	{
-		return name;
-	}
+	void SetName(string name);
 
-	void SetName(string name)
-	{
-		this->name = name;
-	}
+	float GetCampaignCost();
 
-	float GetCampaignCost()
-	{
-		return campaignCost;
-	}
+	void SetCampaignCost(float campaignCost);
 
-	void SetCampaignCost(float campaignCost)
-	{
-		this->campaignCost = campaignCost;
-	}
+	Ad GetRandomAd();
 
-	Ad GetRandomAd()
-	{
-		if (ads.size() > 0)
-		{
-			int randomAdIndex = rand() % ads.size();
-			return ads[randomAdIndex];
-		}
-	}
+	bool IsActive();
 
-	bool IsActive()
-	{
-		time_t now = time(NULL);
+	bool CommitAdvertisement(Ad ad);
 
-		if (fromDateTime <= now && toDateTime >= now)
-		{
-			return true;
-		}
-		return false;
-	}
+	bool DeleteAdvertisement(int id);
 
-	bool CommitAdvertisement(Ad ad)
-	{
-		for (Ad i : ads)
-		{
-			if (i.GetId() == ad.GetId())
-			{
-				return false;
-			}
-		}
-		ads.push_back(ad);
-		return true;
-	}
+	bool RenameAdvertisement(int id, string name);
 
-	bool DeleteAdvertisement(int id)
-	{
-		for (int i = 0; i < ads.size(); i++)
-		{
-			if (ads[i].GetId() == id)
-			{
-				ads.erase(ads.begin() + i);
-				return false;
-			}
-		}
-		return false;
-	}
-
-	bool RenameAdvertisement(int id, string name)
-	{
-		for (int i = 0; i < ads.size(); i++)
-		{
-			if (ads[i].GetId() == id)
-			{
-				ads[i].SetName(name);
-				return false;
-			}
-		}
-		return false;
-	}
-
-	vector<Ad> GetAllAds()
-	{
-		return ads;
-	}
+	vector<Ad> GetAllAds();
 };

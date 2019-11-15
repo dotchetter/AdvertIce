@@ -114,11 +114,12 @@ bool Customer::campaignExists(int id)
 	{
 		if (c.GetId() == id)
 		{
-			return true;
+		return true;
 		}
 	}
 	return false;
 }
+
 int Customer::numberOfCampaigns()
 {
 	return campaigns.size();
@@ -149,4 +150,3 @@ vector<Ad> Customer::GetAllAdsForCampaign(int campaignID)
 		}
 	}
 }
-

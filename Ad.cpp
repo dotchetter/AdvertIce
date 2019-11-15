@@ -1,70 +1,52 @@
 #pragma once
-#include <string>
-#include <vector>
-#include <iostream>
-#include <exception>
-#include "AdType.h"
 #include "Ad.h"
 
 using namespace std;
 
-class Ad
+Ad::Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
 {
+	this->name = name;
+	this->adText = text;
+	this->id = id;
+	this->adType = type;
+}
 
-private:
+string Ad::GetName()
+{
+	return name;
+}
 
-	string name;
-	string adText;
-	AdType adType;
-	int id;
+void Ad::SetName(string name)
+{
+	this->name = name;
+}
 
-public:
+int Ad::GetId()
+{
+	return id;
+}
 
-	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
-	{
-		this->name = name;
-		this->adText = text;
-		this->id = id;
-		this->adType = type;
-	}
+void Ad::SetId(int id)
+{
+	this->id = id;
+}
 
-	string GetName()
-	{
-		return name;
-	}
+AdType Ad::GetType()
+{
+	return adType;
+}
 
-	void SetName(string name)
-	{
-		this->name = name;
-	}
+void Ad::SetType(AdType type)
+{
+	this->adType = type;
+}
 
-	int GetId()
-	{
-		return id;
-	}
+string Ad::GetText()
+{
+	return adText;
+}
 
-	void SetId(int id)
-	{
-		this->id = id;
-	}
-
-	AdType GetType()
-	{
-		return adType;
-	}
-
-	void SetType(AdType type)
-	{
-		this->adType = type;
-	}
-
-	string GetText()
-	{
-		return adText;
-	}
-
-	void SetText(string adText)
-	{
-		this->adText = adText;
-	}
-};
+void Ad::SetText(string adText)
+{
+	this->adText = adText;
+}
