@@ -126,6 +126,19 @@ public:
 		return false;
 	}
 
+	bool RenameAdvertisement(int id, string name)
+	{
+		for (int i = 0; i < ads.size(); i++)
+		{
+			if (ads[i].GetId() == id)
+			{
+				ads[i].SetName(name);
+				return false;
+			}
+		}
+		return false;
+	}
+
 	vector<Ad> GetAllAds()
 	{
 		return ads;
