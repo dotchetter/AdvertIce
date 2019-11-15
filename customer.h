@@ -84,6 +84,18 @@ public:
 		return false;
 	}
 
+	bool RenameAdvertisement(int id, int campaignID, string name)
+	{
+		for (int i = 0; i < campaigns.size(); i++)
+		{
+			if (campaigns[i].GetId() == campaignID)
+			{
+				campaigns[i].RenameAdvertisement(id, name);
+			}
+		}
+		return false;
+	}
+
 	bool hasActiveCampaigns()
 	{
 		for (Campaign i : campaigns)
@@ -122,6 +134,16 @@ public:
 	int numberOfCampaigns()
 	{
 		return campaigns.size();
+	}
+
+	float GetTotalDeposit()
+	{
+		float sum = 0;
+		for (Campaign c : campaigns)
+		{
+			sum += c.GetCampaignCost();
+		}
+		return sum;
 	}
 
 	vector<Campaign> GetAllCampaigns()
