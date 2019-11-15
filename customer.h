@@ -14,151 +14,38 @@ class Customer
 
 public:
 	
-	Customer(string name, int id)
-	{
-		this->name = name;
-		this->id = id;
-	}
+	Customer(string name, int id);
 
-	string GetName()
-	{
-		return name;
-	}
+	string GetName();
 
-	void SetName(string name)
-	{
-		this->name = name;
-	}
+	void SetName(string name);
 
-	int GetId()
-	{
-		return id;
-	}
+	int GetId();
 
-	void SetId(int id)
-	{
-		this->id = id;
-	}
+	void SetId(int id);
 
-	bool AddCampaign(Campaign campaignObject)
-	{
-		campaigns.push_back(campaignObject);
-		return true;
-	}
+	bool AddCampaign(Campaign campaignObject);
 
-	bool DeleteCampaign(int id)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == id)
-			{
-				campaigns.erase(campaigns.begin() + i);
-				return true;
-			}
-		}
-		return false;
-	}
+	bool DeleteCampaign(int id);
 
-	bool CommitAdvertisement(Ad ad, int campaignID)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == campaignID)
-			{
-				campaigns[i].CommitAdvertisement(ad);
-				return true;
-			}
-		}
-		return false;
-	}
+	bool CommitAdvertisement(Ad ad, int campaignID);
 
-	bool DeleteAdvertisement(int id, int campaignID)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == campaignID)
-			{
-				campaigns[i].DeleteAdvertisement(id);
-			}
-		}
-		return false;
-	}
+	bool DeleteAdvertisement(int id, int campaignID);
 
-	bool RenameAdvertisement(int id, int campaignID, string name)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == campaignID)
-			{
-				campaigns[i].RenameAdvertisement(id, name);
-			}
-		}
-		return false;
-	}
+	bool RenameAdvertisement(int id, int campaignID, string name);
 
-	bool hasActiveCampaigns()
-	{
-		for (Campaign i : campaigns)
-		{
-			if (i.IsActive())
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+	bool hasActiveCampaigns();
 
-	void renameCampaign(int campaignID, string name)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == campaignID)
-			{
-				campaigns[i].SetName(name);
-			}
-		}
-	}
+	void renameCampaign(int campaignID, string name);
 
-	bool campaignExists(int id)
-	{
-		for (Campaign c : campaigns)
-		{
-			if (c.GetId() == id)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+	bool campaignExists(int id);
 
-	int numberOfCampaigns()
-	{
-		return campaigns.size();
-	}
+	int numberOfCampaigns();
 
-	float GetTotalDeposit()
-	{
-		float sum = 0;
-		for (Campaign c : campaigns)
-		{
-			sum += c.GetCampaignCost();
-		}
-		return sum;
-	}
+	float GetTotalDeposit();
 
-	vector<Campaign> GetAllCampaigns()
-	{
-		return campaigns;
-	}
+	vector<Campaign> GetAllCampaigns();
 
-	vector<Ad> GetAllAdsForCampaign(int campaignID)
-	{
-		for (int i = 0; i < campaigns.size(); i++)
-		{
-			if (campaigns[i].GetId() == campaignID)
-			{
-				return campaigns[i].GetAllAds();
-			}
-		}
-	}
+	vector<Ad> GetAllAdsForCampaign(int campaignID);
+	
 };
