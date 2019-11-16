@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include "customer.h"
 #include "AdServingEngine.h"
-#include "IdGenerator.h",
+#include "IdGenerator.h"
 
 using namespace std;
 
@@ -562,6 +562,7 @@ int main()
 					}
 				case AdType::PLAINTEXT:
 					cout << newAd.GetText() << endl;
+					Sleep(3000);
 				}
 			}
 			break;

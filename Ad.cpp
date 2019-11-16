@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Ad::Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
+Ad::Ad(string name, string text, int id, AdType type)
 {
 	this->name = name;
 	this->adText = text;
