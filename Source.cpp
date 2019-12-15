@@ -524,7 +524,7 @@ int main()
 
 			std::cout << " -> Hit enter to start runtime. Ads will be displayed in a weighted randomized pattern." << std::endl;
 			std::cout << " -> To exit, hit and hold the ESC key." << std::endl;
-			std::cin >> ent;
+			
 
 			engine.UpdateCustomerBase(AllCustomers);
 			while (true)
@@ -547,6 +547,7 @@ int main()
 						Sleep(500);
 						system("cls");
 						Sleep(500);
+						break;
 					}
 				case AdType::SCROLL:
 					outbuf = newAd.GetText();
@@ -557,10 +558,12 @@ int main()
 						std::cout << outbuf;
 						Sleep(15);
 						system("cls");
+						break;
 					}
 				case AdType::PLAINTEXT:
 					std::cout << newAd.GetText() << std::endl;
 					Sleep(3000);
+					break;
 				}
 			}
 			break;
