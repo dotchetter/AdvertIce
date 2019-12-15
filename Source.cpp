@@ -5,9 +5,7 @@
 #include <Windows.h>
 #include "customer.h"
 #include "AdServingEngine.h"
-#include "IdGenerator.h",
-
-using namespace std;
+#include "IdGenerator.h"
 
 time_t makedate()
 {
@@ -15,18 +13,18 @@ time_t makedate()
 	struct tm tm = {0};
 	bool validInput = true;
 
-	cout << endl << endl;
-	cout << " -> Enter year: ";
-	cin >> Year;
-	cout << " -> Enter Month: ";
-	cin >> Month;
-	cout << " -> Enter Day: ";
-	cin >> Day; 
-	cout << " -> Enter Hour: ";
-	cin >> Hour;
-	cout << " -> Enter Minute: ";
-	cin >> Minute; 
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
+	std::cout << " -> Enter year: ";
+	std::cin >> Year;
+	std::cout << " -> Enter Month: ";
+	std::cin >> Month;
+	std::cout << " -> Enter Day: ";
+	std::cin >> Day; 
+	std::cout << " -> Enter Hour: ";
+	std::cin >> Hour;
+	std::cout << " -> Enter Minute: ";
+	std::cin >> Minute; 
+	std::cout << std::endl << std::endl;
 
 	tm.tm_year = Year - 1900;
 	tm.tm_mon = Month - 1;
@@ -51,7 +49,7 @@ time_t makedate()
 	return mktime(&tm);
 }
 
-int GetIndexOfCustomer(vector<Customer> &AllCustomers, int id)
+int GetIndexOfCustomer(std::vector<Customer> &AllCustomers, int id)
 {
 	for (int i = 0; i < AllCustomers.size(); i++)
 	{
@@ -62,86 +60,86 @@ int GetIndexOfCustomer(vector<Customer> &AllCustomers, int id)
 	} return -1;
 }
 
-void AddCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
+void AddCustomer(std::vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 {
-	cout << endl << " -> You are here: [Main menu > Add Customer]" << endl << endl;
+	std::cout << std::endl << " -> You are here: [Main menu > Add Customer]" << std::endl << std::endl;
 
-	string customerName;
+	std::string customerName;
 	int customerID;
 
-	cout << " -> Enter customer name: " << endl << " -> ";
-	getline(cin >> ws,customerName);
+	std::cout << " -> Enter customer name: " << std::endl << " -> ";
+	getline(std::cin >> std::ws,customerName);
 
 	AllCustomers.push_back(Customer(customerName, idGenerator.Get()));
-	cout << " -> Customer added successfully. " << endl << endl;
+	std::cout << " -> Customer added successfully. " << std::endl << std::endl;
 }
 
-void ListAllCampaignsForCustomer(vector<Customer> &AllCustomers, int indexForCustomer)
+void ListAllCampaignsForCustomer(std::vector<Customer> &AllCustomers, int indexForCustomer)
 {
-	string idRepresentation;
+	std::string idRepresentation;
 	const int headerLength = 22;
 	int totalLength;
 	int remainingWhitespace;
 
-	cout << endl << " --- All Campaigns for customer " << 
-		AllCustomers[indexForCustomer].GetName() << " --- " << endl;
-	cout << " --- <Name> ------------ <ID> --- " << endl << endl;
+	std::cout << std::endl << " --- All Campaigns for customer " << 
+		AllCustomers[indexForCustomer].GetName() << " --- " << std::endl;
+	std::cout << " --- <Name> ------------ <ID> --- " << std::endl << std::endl;
 
 	for (Campaign c : AllCustomers[indexForCustomer].GetAllCampaigns())
 	{
-		idRepresentation = to_string(c.GetId());
+		idRepresentation =std::to_string(c.GetId());
 		totalLength = c.GetName().length() + idRepresentation.length();
 		remainingWhitespace = (headerLength - totalLength);
-		cout << "    " << c.GetName();
+		std::cout << "    " << c.GetName();
 		for (int i = 0; i < remainingWhitespace; i++)
 		{
-			cout << " ";
+			std::cout << " ";
 		}
-		cout << " " << c.GetId() << endl;
+		std::cout << " " << c.GetId() << std::endl;
 	}
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 }
 
-void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdGenerator &idGenerator)
+void AdvertisementMenu(std::vector<Customer> &AllCustomers, int indexForCustomer, IdGenerator &idGenerator)
 {
 	int idBuf;
 	int selection;
 	int campaignIdBuf;
 	AdType adtypeBuf;
-	string advertisementName;
-	string advertisementText;
-	string nameBuf;
+	std::string advertisementName;
+	std::string advertisementText;
+	std::string nameBuf;
 	int adTypeSelection;
 	int advertisementId;
 
-	string idRepresentation;
+	std::string idRepresentation;
 	const int headerLength = 20;
 	int totalLength;
 	int remainingWhitespace;
 
-	cout << endl << " -> You are here: [Main menu > Edit Customer > Advertisement menu]" 
-		<< endl << endl;
+	std::cout << std::endl << " -> You are here: [Main menu > Edit Customer > Advertisement menu]" 
+		<< std::endl << std::endl;
 
 	if (AllCustomers[indexForCustomer].GetAllCampaigns().size() < 1)
 	{
-		cout << " -> There are no campaigns for this customer, thus no ads." << endl;
-		cout << " -> Start by creating a campaign, then add advertisements to it." << endl;
+		std::cout << " -> There are no campaigns for this customer, thus no ads." << std::endl;
+		std::cout << " -> Start by creating a campaign, then add advertisements to it." << std::endl;
 		return;
 	}
 	while (true)
 	{
-		cout << "[1] List all Ads" << endl;
-		cout << "[2] Create Ad" << endl;
-		cout << "[3] Rename Ad" << endl;
-		cout << "[4] Delete Ad" << endl;
-		cout << "[5] Back" << endl;
-		cout << endl << " -> "; cin >> selection;
+		std::cout << "[1] List all Ads" << std::endl;
+		std::cout << "[2] Create Ad" << std::endl;
+		std::cout << "[3] Rename Ad" << std::endl;
+		std::cout << "[4] Delete Ad" << std::endl;
+		std::cout << "[5] Back" << std::endl;
+		std::cout << std::endl << " -> "; std::cin >> selection;
 
-		if (!cin)
+		if (!std::cin)
 		{
-			cin.clear();
-			cin.ignore(256, '\n');
-			cout << " -> Invalid entry - only digits allowed." << endl;
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 			break;
 		}
 
@@ -152,57 +150,57 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdG
 		case 1:
 			for (Campaign c : AllCustomers[indexForCustomer].GetAllCampaigns())
 			{
-				cout << " --- Campaign: " << c.GetName() << "  --------" << endl;
-				cout << endl << " --------  All ads:  --------- " << endl;
-				cout << " --- <Name> --------- <ID> --- " << endl << endl;
+				std::cout << " --- Campaign: " << c.GetName() << "  --------" << std::endl;
+				std::cout << std::endl << " --------  All ads:  --------- " << std::endl;
+				std::cout << " --- <Name> --------- <ID> --- " << std::endl << std::endl;
 				
 				for (Ad a : AllCustomers[indexForCustomer].GetAllAdsForCampaign(c.GetId()))
 				{
-					idRepresentation = to_string(c.GetId());
+					idRepresentation =std:: to_string(c.GetId());
 					totalLength = c.GetName().length() + idRepresentation.length();
 					remainingWhitespace = (headerLength - totalLength);
-					cout << "    " << a.GetName();
+					std::cout << "    " << a.GetName();
 
 					for (int i = 0; i < remainingWhitespace; i++)
 					{
-						cout << " ";
+						std::cout << " ";
 					}
-					cout << " " << a.GetId() << endl;
-				cout << endl << endl;
+					std::cout << " " << a.GetId() << std::endl;
+				std::cout << std::endl << std::endl;
 				}
 			}
-			cout << endl << endl;
+			std::cout << std::endl << std::endl;
 			break;
 
 		case 2:
-			cout << "Enter campaign ID for the advertisement: " << endl << " -> "; 
-			cin >> campaignIdBuf;
+			std::cout << "Enter campaign ID for the advertisement: " << std::endl << " -> ";
+			std::cin >> campaignIdBuf;
 
 			if (!AllCustomers[indexForCustomer].campaignExists(campaignIdBuf)) {
-				cout << "The campaign you searched for was not found." << endl;
+				std::cout << "The campaign you searched for was not found." << std::endl;
 				return;
 			}
-			else if (!cin)
+			else if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				break;
 			}
 
-			cout << " -> Advertisement name: " << endl << " -> "; getline(cin >> ws, advertisementName);;
-			cout << " -> Advertisement text: " << endl << " -> "; getline(cin >> ws, advertisementText);;
-			cout << " -> This option comes in three flavors. Select with 1-3 and hit enter." << endl << endl;
-			cout << "[1] Blinking" << endl;
-			cout << "[2] Static, plain text" << endl;
-			cout << "[3] Scrolling" << endl << endl;
-			cout << " -> "; cin >> adTypeSelection;
+			std::cout << " -> Advertisement name: " << std::endl << " -> "; getline(std::cin >> std::ws, advertisementName);;
+			std::cout << " -> Advertisement text: " << std::endl << " -> "; getline(std::cin >> std::ws, advertisementText);;
+			std::cout << " -> This option comes in three flavors. Select with 1-3 and hit enter." << std::endl << std::endl;
+			std::cout << "[1] Blinking" << std::endl;
+			std::cout << "[2] Static, plain text" << std::endl;
+			std::cout << "[3] Scrolling" << std::endl << std::endl;
+			std::cout << " -> "; std::cin >> adTypeSelection;
 
-			if (!cin)
+			if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				return;
 			}
 
@@ -228,35 +226,35 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdG
 			break;
 
 		case 3:
-			cout << " -> Enter campaign ID for the advertisement: "
-				<< endl << " -> "; cin >> campaignIdBuf;
-			cout << " -> Enter ad ID: ";
-			cout << endl << " -> "; cin >> idBuf;
+			std::cout << " -> Enter campaign ID for the advertisement: "
+				<< std::endl << " -> "; std::cin >> campaignIdBuf;
+			std::cout << " -> Enter ad ID: ";
+			std::cout << std::endl << " -> "; std::cin >> idBuf;
 
-			if (!cin)
+			if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				break;
 			}
 
-			cout << " -> Enter new name for the advertisement: " << endl;
-			cout << " -> "; getline(cin >> ws, nameBuf);
+			std::cout << " -> Enter new name for the advertisement: " << std::endl;
+			std::cout << " -> "; getline(std::cin >> std::ws, nameBuf);
 			AllCustomers[indexForCustomer].RenameAdvertisement(idBuf, campaignIdBuf, nameBuf);
 			break;
 
 		case 4:
-			cout << " -> Enter campaign ID for the advertisement: " 
-				<< endl << " -> "; cin >> campaignIdBuf;
-			cout << " -> Enter ID for the advertisement to delete: " 
-				<< endl; cout << " -> "; cin >> advertisementId;
+			std::cout << " -> Enter campaign ID for the advertisement: " 
+				<< std::endl << " -> "; std::cin >> campaignIdBuf;
+			std::cout << " -> Enter ID for the advertisement to delete: " 
+				<< std::endl; std::cout << " -> "; std::cin >> advertisementId;
 
-			if (!cin)
+			if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				break;
 			}
 
@@ -269,163 +267,163 @@ void AdvertisementMenu(vector<Customer> &AllCustomers, int indexForCustomer, IdG
 	}
 }
 
-void ListAllCustomers(vector<Customer> &AllCustomers)
+void ListAllCustomers(std::vector<Customer> &AllCustomers)
 {
-	string idRepresentation;
+	std::string idRepresentation;
 	const int headerLength = 14;
 	int totalLength;
 	int remainingWhitespace;
 
-	cout << endl << " -------- All customers: -------- " << endl;
-	cout << " --- <Name> --- <ID> --- <Deposit> ---" << endl << endl;
+	std::cout << std::endl << " -------- All customers: -------- " << std::endl;
+	std::cout << " --- <Name> --- <ID> --- <Deposit> ---" << std::endl << std::endl;
 
 	for (Customer c : AllCustomers)
 	{
-		idRepresentation = to_string(c.GetId());
+		idRepresentation = std::to_string(c.GetId());
 		totalLength = c.GetName().length() + idRepresentation.length();
 		remainingWhitespace = (headerLength - totalLength);
-		cout << "    " << c.GetName();
+		std::cout << "    " << c.GetName();
 		for (int i = 0; i < remainingWhitespace; i++)
 		{
-			cout << " ";
+			std::cout << " ";
 		}
-		cout << " " << c.GetId();
+		std::cout << " " << c.GetId();
 		for (int i = 0; i < remainingWhitespace; i++)
 		{
-			cout << " ";
+			std::cout << " ";
 		}
-		cout << " " << c.GetTotalDeposit() << endl;
+		std::cout << " " << c.GetTotalDeposit() << std::endl;
 
 	}
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 }
 
-void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
+void EditCustomer(std::vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 {
 	int indexForCustomer = 0;
 	int customerIdBuf = 0;
 	int selection;
 	int idBuf;
-	string newNameBuf;
-	string campaignNameBuf;
+	std::string newNameBuf;
+	std::string campaignNameBuf;
 	float campaignCostBuf = 0;
 	time_t begin;
 	time_t end;
 
 	while (true)
 	{
-		cout << endl << " -> You are here: [Main menu > Edit Customer]" << endl << endl;
+		std::cout << std::endl << " -> You are here: [Main menu > Edit Customer]" << std::endl << std::endl;
 		
 		if (customerIdBuf == 0)
 		{
-			cout << " -> Enter the ID for the customer" << endl;
-			cout << " -> "; cin >> customerIdBuf;
+			std::cout << " -> Enter the ID for the customer" << std::endl;
+			std::cout << " -> "; std::cin >> customerIdBuf;
 		}
 
 		indexForCustomer = GetIndexOfCustomer(AllCustomers, customerIdBuf);
 
 		if (indexForCustomer == -1)
 		{
-			cout << " -> The customer you searched for was not found." << endl;
+			std::cout << " -> The customer you searched for was not found." << std::endl;
 			break;
 		}
 		else
 		{
-			cout << " -> Selected customer: " << AllCustomers[indexForCustomer].GetName() << endl << endl;
+			std::cout << " -> Selected customer: " << AllCustomers[indexForCustomer].GetName() << std::endl << std::endl;
 		}
 
-		cout << "[1] Edit Name" << endl;
-		cout << "[2] Delete customer" << endl;
-		cout << "[3] Add campaign" << endl;
-		cout << "[4] Delete campaign" << endl;
-		cout << "[5] Rename campaign" << endl;
-		cout << "[6] List all campaigns" << endl;
-		cout << "[7] Advertisement menu" << endl;
-		cout << "[8] Back" << endl;
+		std::cout << "[1] Edit Name" << std::endl;
+		std::cout << "[2] Delete customer" << std::endl;
+		std::cout << "[3] Add campaign" << std::endl;
+		std::cout << "[4] Delete campaign" << std::endl;
+		std::cout << "[5] Rename campaign" << std::endl;
+		std::cout << "[6] List all campaigns" << std::endl;
+		std::cout << "[7] Advertisement menu" << std::endl;
+		std::cout << "[8] Back" << std::endl;
 
-		cout << " -> "; cin >> selection;
+		std::cout << " -> "; std::cin >> selection;
 
-		if (!cin)
+		if (!std::cin)
 		{
-			cin.clear();
-			cin.ignore(256, '\n');
-			cout << " -> Invalid entry - only digits allowed." << endl;
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 			break;
 		}
-	
+
 		switch (selection)
 		{
 		case 1:
-			cout << " -> Enter the new name for customer " <<
+			std::cout << " -> Enter the new name for customer " <<
 				AllCustomers[indexForCustomer].GetName() <<
-				endl; cout << " -> "; getline(cin >> ws, newNameBuf);;
+				std::endl; std::cout << " -> "; std::getline(std::cin >> std::ws, newNameBuf);;
 			AllCustomers[indexForCustomer].SetName(newNameBuf);
 			break;
 
 		case 2:
 			AllCustomers.erase(AllCustomers.begin() + indexForCustomer);
-			cout << " -> Customer deleted: Going back to main menu." << endl;
+			std::cout << " -> Customer deleted: Going back to main menu." << std::endl;
 			return;
 
 		case 3:
-			cout << " -> Enter campaign name: ";
-			cout << endl << " -> "; getline(cin >> ws, campaignNameBuf);
+			std::cout << " -> Enter campaign name: ";
+			std::cout << std::endl << " -> "; getline(std::cin >> std::ws, campaignNameBuf);
 
-			cout << " -> Enter campaign investment: ";
-			cout << endl << " -> "; cin >> campaignCostBuf;
+			std::cout << " -> Enter campaign investment: ";
+			std::cout << std::endl << " -> "; std::cin >> campaignCostBuf;
 
-			cout << " -> Enter Year, Month, Day for the beginning of this campaign: " << endl;
+			std::cout << " -> Enter Year, Month, Day for the beginning of this campaign: " << std::endl;
 			begin = makedate();
 
-			cout << " -> Enter Year, Month, Day for the end of this campaign: " << endl;
+			std::cout << " -> Enter Year, Month, Day for the end of this campaign: " << std::endl;
 			end = makedate();
 
 			if (begin == NULL or end == NULL or begin > end)
 			{
-				cout << endl << " -> Warning: Illogical dates entered, try again." << endl;
+				std::cout << std::endl << " -> Warning: Illogical dates entered, try again." << std::endl;
 				break;
 			}
 
 			AllCustomers[indexForCustomer].AddCampaign(
 				Campaign(begin, end, idGenerator.Get(), campaignNameBuf, campaignCostBuf));
-			cout << " -> Campaign added successfully." << endl << endl;
+			std::cout << " -> Campaign added successfully." << std::endl << std::endl;
 			break;
 
 		case 4:
-			cout << " -> Enter campaign ID: ";
-			cout << endl << " -> "; cin >> idBuf;
+			std::cout << " -> Enter campaign ID: ";
+			std::cout << std::endl << " -> "; std::cin >> idBuf;
 
-			if (!cin)
+			if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				break;
 			}
 
 			if (AllCustomers[indexForCustomer].DeleteCampaign(idBuf))
 			{
-				cout << " -> Campaign deleted successfully." << endl;
+				std::cout << " -> Campaign deleted successfully." << std::endl;
 			}
 			else
 			{
-				cout << " -> An error occured deleting this campaign. Did you enter a valid id?" << endl;
+				std::cout << " -> An error occured deleting this campaign. Did you enter a valid id?" << std::endl;
 			}
 			break;
 		case 5:
-			cout << " -> Enter campaign ID: ";
-			cout << endl << " -> "; cin >> idBuf;
+			std::cout << " -> Enter campaign ID: ";
+			std::cout << std::endl << " -> "; std::cin >> idBuf;
 
-			if (!cin)
+			if (!std::cin)
 			{
-				cin.clear();
-				cin.ignore(256, '\n');
-				cout << " -> Invalid entry - only digits allowed." << endl;
+				std::cin.clear();
+				std::cin.ignore(256, '\n');
+				std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 				break;
 			}
 
-			cout << " -> Enter campaign name: ";
-			cout << endl << " -> "; getline(cin >> ws, campaignNameBuf);
+			std::cout << " -> Enter campaign name: ";
+			std::cout << std::endl << " -> "; getline(std::cin >> std::ws, campaignNameBuf);
 			AllCustomers[indexForCustomer].renameCampaign(idBuf, campaignNameBuf);
 			break;
 
@@ -445,21 +443,21 @@ void EditCustomer(vector<Customer> &AllCustomers, IdGenerator &idGenerator)
 int MainMenu()
 {
 	int selection;
-	cout << endl << " -> You are here: [Main menu]" << endl << endl;
+	std::cout << std::endl << " -> You are here: [Main menu]" << std::endl << std::endl;
 	
-	if (!cin)
+	if (!std::cin)
 	{
-		cin.clear();
-		cin.ignore(256, '\n');
-		cout << " -> Invalid entry - only digits allowed." << endl;
+		std::cin.clear();
+		std::cin.ignore(256, '\n');
+		std::cout << " -> Invalid entry - only digits allowed." << std::endl;
 		return -1;
 	}
 
-	cout << "[1] Add customer" << endl;
-	cout << "[2] Edit customer" << endl;
-	cout << "[3] List all customers" << endl;
-	cout << "[4] Enter runtime" << endl;
-	cout << "[5] Exit" << endl; cout << endl << " -> "; cin >> selection;
+	std::cout << "[1] Add customer" << std::endl;
+	std::cout << "[2] Edit customer" << std::endl;
+	std::cout << "[3] List all customers" << std::endl;
+	std::cout << "[4] Enter runtime" << std::endl;
+	std::cout << "[5] Exit" << std::endl; std::cout << std::endl << " -> "; std::cin >> selection;
 	
 	return selection;
 }
@@ -471,17 +469,17 @@ int main()
 	char ent;
 	AdServingEngine engine = AdServingEngine();
 	IdGenerator idGenerator = IdGenerator();
-	vector<Customer>AllCustomers;
+	std::vector<Customer>AllCustomers;
 	int selection;
 	int adAmount = 0;
-	string outbuf;
-	string whitespace = " ";
+	std::string outbuf;
+	std::string whitespace = " ";
 
-	cout << endl;
-	cout << "\t\t\t\t ******************* Advertice *******************" << endl;
-	cout << "\t\t\t\t * All-in-one campaign and advertisement system  *" << endl;
-	cout << "\t\t\t\t *************************************************" << endl;
-	cout << endl;
+	std::cout << std::endl;
+	std::cout << "\t\t\t\t ******************* Advertice *******************" << std::endl;
+	std::cout << "\t\t\t\t * All-in-one campaign and advertisement system  *" << std::endl;
+	std::cout << "\t\t\t\t *************************************************" << std::endl;
+	std::cout << std::endl;
 
 	Sleep(3000);
 	while (true)
@@ -500,7 +498,7 @@ int main()
 		case 3:
 			if (AllCustomers.size() < 1)
 			{
-				cout << endl << " -> There are no stored customers in the system." << endl << endl;
+				std::cout << std::endl << " -> There are no stored customers in the system." << std::endl << std::endl;
 				break;
 			}
 			ListAllCustomers(AllCustomers);
@@ -520,13 +518,13 @@ int main()
 
 			if (AllCustomers.size() < 1 or adAmount == 0)
 			{
-				cout << endl << " -> There are no stored customers, no valid campaigns or no ads in the system." << endl << endl;
+				std::cout << std::endl << " -> There are no stored customers, no valid campaigns or no ads in the system." << std::endl << std::endl;
 				break;
 			}
 
-			cout << " -> Hit enter to start runtime. Ads will be displayed in a weighted randomized pattern." << endl;
-			cout << " -> To exit, hit and hold the ESC key." << endl;
-			cin >> ent;
+			std::cout << " -> Hit enter to start runtime. Ads will be displayed in a weighted randomized pattern." << std::endl;
+			std::cout << " -> To exit, hit and hold the ESC key." << std::endl;
+			std::cin >> ent;
 
 			engine.UpdateCustomerBase(AllCustomers);
 			while (true)
@@ -545,7 +543,7 @@ int main()
 
 					for (int i = 0; i < 10; i++)
 					{
-						cout << newAd.GetText();
+						std::cout << newAd.GetText();
 						Sleep(500);
 						system("cls");
 						Sleep(500);
@@ -556,12 +554,13 @@ int main()
 					for (int i = 0; i < 100; i++)
 					{
 						outbuf.insert(0, whitespace);
-						cout << outbuf;
+						std::cout << outbuf;
 						Sleep(15);
 						system("cls");
 					}
 				case AdType::PLAINTEXT:
-					cout << newAd.GetText() << endl;
+					std::cout << newAd.GetText() << std::endl;
+					Sleep(3000);
 				}
 			}
 			break;

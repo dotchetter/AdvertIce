@@ -7,19 +7,17 @@
 #include <random>
 #include "Ad.h"
 
-using namespace std;
-
 class Campaign
 {
-	string name;
+	std::string name;
 	int id;
 	time_t fromDateTime;
 	time_t toDateTime;
 	float campaignCost;
-	vector<Ad> ads;
+	std::vector<Ad> ads;
 
 public:
-	Campaign(time_t fromDateTime, time_t toDateTime, int id, string name, float campaignCost);
+	Campaign(time_t fromDateTime, time_t toDateTime, int id, std::string name, float campaignCost);
 	
 	time_t GetFromDateTime();
 
@@ -33,9 +31,9 @@ public:
 
 	void SetId(int id);
 
-	string GetName();
+	std::string GetName();
 
-	void SetName(string name);
+	void SetName(std::string name);
 
 	float GetCampaignCost();
 
@@ -49,7 +47,7 @@ public:
 
 	bool DeleteAdvertisement(int id);
 
-	bool RenameAdvertisement(int id, string name);
+	bool RenameAdvertisement(int id, std::string name);
 
-	vector<Ad> GetAllAds();
+	std::vector<Ad> GetAllAds();
 };

@@ -5,25 +5,23 @@
 #include <exception>
 #include "AdType.h"
 
-using namespace std;
-
 class Ad
 {
 
 private:
 
-	string name;
-	string adText;
+	std::string name;
+	std::string adText;
 	AdType adType; 
 	int id;
 
 public:
 
-	Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT);
+	Ad(std::string name, std::string text, int id, AdType type);
 
-	string GetName();
+	std::string GetName();
 
-	void SetName(string name);
+	void SetName(std::string name);
 
 	int GetId();
 
@@ -33,7 +31,7 @@ public:
 
 	void SetType(AdType type);
 
-	string GetText();
+	std::string GetText();
 
-	void SetText(string adText);
+	void SetText(std::string adText);
 };

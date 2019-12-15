@@ -1,20 +1,18 @@
 #pragma once
 #include "customer.h"
 
-using namespace std;
-
-Customer::Customer(string name, int id)
+Customer::Customer(std::string name, int id)
 {
 	this->name = name;
 	this->id = id;
 }
 
-string Customer::GetName()
+std::string Customer::GetName()
 {
 	return name;
 }
 
-void Customer::SetName(string name)
+void Customer::SetName(std::string name)
 {
 	this->name = name;
 }
@@ -73,7 +71,7 @@ bool Customer::DeleteAdvertisement(int id, int campaignID)
 	return false;
 }
 
-bool Customer::RenameAdvertisement(int id, int campaignID, string name)
+bool Customer::RenameAdvertisement(int id, int campaignID, std::string name)
 {
 	for (int i = 0; i < campaigns.size(); i++)
 	{
@@ -97,7 +95,7 @@ bool Customer::hasActiveCampaigns()
 	return false;
 }
 
-void Customer::renameCampaign(int campaignID, string name)
+void Customer::renameCampaign(int campaignID, std::string name)
 {
 	for (int i = 0; i < campaigns.size(); i++)
 	{
@@ -135,12 +133,12 @@ float Customer::GetTotalDeposit()
 	return sum;
 }
 
-vector<Campaign> Customer::GetAllCampaigns()
+std::vector<Campaign> Customer::GetAllCampaigns()
 {
 	return campaigns;
 }
 
-vector<Ad> Customer::GetAllAdsForCampaign(int campaignID)
+std::vector<Ad> Customer::GetAllAdsForCampaign(int campaignID)
 {
 	for (int i = 0; i < campaigns.size(); i++)
 	{

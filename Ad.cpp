@@ -1,9 +1,7 @@
 #pragma once
 #include "Ad.h"
 
-using namespace std;
-
-Ad::Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
+Ad::Ad(std::string name, std::string text, int id, AdType type = AdType::PLAINTEXT)
 {
 	this->name = name;
 	this->adText = text;
@@ -11,12 +9,12 @@ Ad::Ad(string name, string text, int id, AdType type = AdType::PLAINTEXT)
 	this->adType = type;
 }
 
-string Ad::GetName()
+std::string Ad::GetName()
 {
 	return name;
 }
 
-void Ad::SetName(string name)
+void Ad::SetName(std::string name)
 {
 	this->name = name;
 }
@@ -41,12 +39,12 @@ void Ad::SetType(AdType type)
 	this->adType = type;
 }
 
-string Ad::GetText()
+std::string Ad::GetText()
 {
 	return adText;
 }
 
-void Ad::SetText(string adText)
+void Ad::SetText(std::string adText)
 {
 	this->adText = adText;
 }

@@ -1,9 +1,7 @@
 #pragma once
 #include "AdServingEngine.h"
 
-using namespace std;
-
-void AdServingEngine::UpdateCustomerBase(vector<Customer> customerBase)
+void AdServingEngine::UpdateCustomerBase(std::vector<Customer> customerBase)
 {
 	this->customerBase = customerBase;
 }
@@ -32,7 +30,7 @@ Ad AdServingEngine::GetNextAd()
 				thisCustomerTotalDeposit += c.GetCampaignCost();
 			}
 		}
-		CustomerTotalDeposit.insert(make_pair(i.GetId(), thisCustomerTotalDeposit));
+		CustomerTotalDeposit.insert(std::make_pair(i.GetId(), thisCustomerTotalDeposit));
 	}
 
 	customerSelector = rand() % ((int)allCustomersTotalDeposit + 1);

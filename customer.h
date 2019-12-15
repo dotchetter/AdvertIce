@@ -4,21 +4,19 @@
 #include <string>
 #include "campaign.h"
 
-using namespace std;
-
 class Customer
 {
-	vector<Campaign> campaigns;
-	string name;
+	std::vector<Campaign> campaigns;
+	std::string name;
 	int id;
 
 public:
 	
-	Customer(string name, int id);
+	Customer(std::string name, int id);
 
-	string GetName();
+	std::string GetName();
 
-	void SetName(string name);
+	void SetName(std::string name);
 
 	int GetId();
 
@@ -32,11 +30,11 @@ public:
 
 	bool DeleteAdvertisement(int id, int campaignID);
 
-	bool RenameAdvertisement(int id, int campaignID, string name);
+	bool RenameAdvertisement(int id, int campaignID, std::string name);
 
 	bool hasActiveCampaigns();
 
-	void renameCampaign(int campaignID, string name);
+	void renameCampaign(int campaignID, std::string name);
 
 	bool campaignExists(int id);
 
@@ -44,7 +42,7 @@ public:
 
 	float GetTotalDeposit();
 
-	vector<Campaign> GetAllCampaigns();
+	std::vector<Campaign> GetAllCampaigns();
 
-	vector<Ad> GetAllAdsForCampaign(int campaignID);
+	std::vector<Ad> GetAllAdsForCampaign(int campaignID);
 };

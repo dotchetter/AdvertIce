@@ -1,9 +1,7 @@
 
 #include "campaign.h"
 
-using namespace std;
-
-Campaign::Campaign(time_t fromDateTime, time_t toDateTime, int id, string name, float campaignCost)
+Campaign::Campaign(time_t fromDateTime, time_t toDateTime, int id, std::string name, float campaignCost)
 {
 	this->fromDateTime = fromDateTime;
 	this->toDateTime = toDateTime;
@@ -42,12 +40,12 @@ void Campaign::SetId(int id)
 	this->id = id;
 }
 
-string Campaign::GetName()
+std::string Campaign::GetName()
 {
 	return name;
 }
 
-void Campaign::SetName(string name)
+void Campaign::SetName(std::string name)
 {
 	this->name = name;
 }
@@ -107,7 +105,7 @@ bool Campaign::DeleteAdvertisement(int id)
 	return false;
 }
 
-bool Campaign::RenameAdvertisement(int id, string name)
+bool Campaign::RenameAdvertisement(int id, std::string name)
 {
 	for (int i = 0; i < ads.size(); i++)
 	{
@@ -120,7 +118,7 @@ bool Campaign::RenameAdvertisement(int id, string name)
 	return false;
 }
 
-vector<Ad> Campaign::GetAllAds()
+std::vector<Ad> Campaign::GetAllAds()
 {
 	return ads;
 }

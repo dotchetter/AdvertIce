@@ -2,8 +2,6 @@
 #include <random>
 #include <vector>
 
-using namespace std;
-
 class IdGenerator
 {
 	int previouslyGenerated = 0;

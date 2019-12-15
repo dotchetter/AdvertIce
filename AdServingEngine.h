@@ -7,16 +7,14 @@
 #include <map>
 #include "customer.h"
 
-using namespace std;
-
 class AdServingEngine
 {
-	vector<Customer> customerBase;
-	map<int, float> CustomerTotalDeposit;
+	std::vector<Customer> customerBase;
+	std::map<int, float> CustomerTotalDeposit;
 
 public:
 
-	void UpdateCustomerBase(vector<Customer> customerBase);
+	void UpdateCustomerBase(std::vector<Customer> customerBase);
 
 	Ad GetNextAd();
 
